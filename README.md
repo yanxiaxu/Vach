@@ -25,7 +25,7 @@ cd Vach
 ```bash
 conda create -n Vach python==3.10
 conda activate Vach
-pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113
+pip install torch==1.12.1+cu113 torchvision==0.13.1+cu113 torchaudio==0.12.1 --extra-index-url https://download.pytorch.org/whl/cu113 --default-timeout=1000
 pip install -r requirements.txt
 pip install --no-index --no-cache-dir pytorch3d -f https://dl.fbaipublicfiles.com/pytorch3d/packaging/wheels/py38_cu113_pyt1121/download.html
 # Note the following modules. If installation is unsuccessful, you can navigate to the path and use pip install . or python setup.py install to compile and install.
@@ -33,6 +33,18 @@ pip install --no-index --no-cache-dir pytorch3d -f https://dl.fbaipublicfiles.co
 # NeRF/gridencoder
 # NeRF/raymarching
 # NeRF/shencoder
+
+# 以上模块安装异常，可以尝试修改setup.py内容
+# -std=c++14 修改为 -std=c++17
+# 'build_ext': BuildExtension 修改为 'build_ext': BuildExtension.with_options(use_ninja=False)
+
+pip install tensorflow-gpu==2.8.0
+pip install --upgrade "protobuf<=3.20.1"
+pip install librosa
+
+# 降低版本
+pip install flask==1.1.4
+pip install MarkupSafe==2.0.1
 ```
 
 #### 数字人模型文件

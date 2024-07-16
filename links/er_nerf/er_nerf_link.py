@@ -549,7 +549,7 @@ class ErNerfLink:
     def push_audio(self, byte_stream):
         if self.opt.tts == "edgetts":
             self.asr.input_stream.write(byte_stream)
-            if len(byte_stream)<=0:
+            if len(byte_stream)>=720:
                 self.asr.input_stream.seek(0)
                 stream = self.get_adapter_stream(self.asr.input_stream)  # 统一转换格式
                 streamlen = stream.shape[0]
